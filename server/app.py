@@ -100,15 +100,18 @@ class CreateRestaurantPizza(Resource):
                 "name":pizza.name,
                 "ingredients":pizza.ingredients
             },
+            "pizza_id": restaurant_pizza.pizza_id,
+            "restaurant":{
+                "id": restaurant.id,
+                "name": restaurant.name,
+                "address": restaurant.address
+            },
             "restaurant_id":restaurant_pizza.restaurant_id,
             "price":restaurant_pizza.price
         }
         return response_body, 201
     
 api.add_resource(CreateRestaurantPizza, '/restaurant_pizzas')    
-
-
-
 
 class RestaurantById(Resource):
     def get(self, id):
@@ -159,9 +162,5 @@ class RestaurantById(Resource):
         return response    
 api.add_resource(RestaurantById, '/restaurants/<int:id>')
 
-
-
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
-
-
